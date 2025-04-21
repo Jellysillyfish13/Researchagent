@@ -1,0 +1,25 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-04-21T01:38:43-04:00",
+  "id": "research-agent-setup-codelab",
+  "duration": 28,
+  "title": "Research Agent Setup Guide",
+  "summary": "Learn how to set up and run the Research Agent system for automated, AI-powered research",
+  "source": "codelab.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "ai",
+    "research",
+    "langgraph"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "research-agent-setup-codelab"
+}

@@ -1,0 +1,158 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Research Agent Setup Guide</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  codelab-ga4id=""
+                  id="research-agent-setup-codelab"
+                  title="Research Agent Setup Guide"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Overview" duration="5">
+        <h2 class="checklist" is-upgraded>What You&#39;ll Learn</h2>
+<ul class="checklist">
+<li>How to clone and set up the Research Agent repository</li>
+<li>Installing dependencies using uv for faster package management</li>
+<li>Creating and activating a virtual environment</li>
+<li>Configuring necessary API keys</li>
+<li>Running your first research query</li>
+</ul>
+<h2 is-upgraded>Prerequisites</h2>
+<ul>
+<li>Python 3.10 or higher</li>
+<li>Git installed on your system</li>
+<li>Basic familiarity with command line tools</li>
+<li>A SerpAPI key for web search capabilities</li>
+<li>A Google Gemini API key for AI capabilities</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clone the Repository" duration="2">
+        <p>The first step is to clone the Research Agent repository to your local machine.</p>
+<pre><code language="language-bash" class="language-bash">git clone git@github.com:Jellysillyfish13/Researchagent.git
+
+</code></pre>
+<p>This will create a local copy of the Research Agent project on your machine and navigate you into the project directory.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Install uv Package Manager" duration="3">
+        <p>Research Agent uses uv, a fast Python package installer and resolver, to manage dependencies efficiently.</p>
+<pre><code language="language-bash" class="language-bash">pip install uv
+</code></pre>
+<pre><code language="language-bash" class="language-bash">uv --version
+</code></pre>
+<p>uv is significantly faster than traditional pip and provides better dependency resolution, making it ideal for projects with complex dependencies like Research Agent.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Create and Activate a Virtual Environment" duration="3">
+        <p>Creating a dedicated virtual environment helps isolate the project dependencies from your system Python.</p>
+<p>Create a virtual environment</p>
+<pre><code language="language-bash" class="language-bash">uv venv venv
+</code></pre>
+<p>Activate the virtual environment on Windows:</p>
+<pre><code language="language-bash" class="language-bash">venv\Scripts\activate
+</code></pre>
+<p>On macOS/Linux:</p>
+<pre><code language="language-bash" class="language-bash">source venv/bin/activate
+</code></pre>
+<p>Your command prompt should now show the virtual environment name, indicating that it&#39;s active.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Install Dependencies" duration="5">
+        <p>With the virtual environment activated, install all the required dependencies using uv. Check your vscode and make sure you are using the virtual env</p>
+<pre><code language="language-bash" class="language-bash">which python
+</code></pre>
+<p>Then install the requirements</p>
+<pre><code language="language-bash" class="language-bash">uv pip install -r requirements.txt
+</code></pre>
+<p>This will install all the packages listed in requirements.txt, including:</p>
+<ul>
+<li>LangGraph for workflow orchestration</li>
+<li>LiteLLM for model interfacing</li>
+<li>FastAPI (if you&#39;re using the API option)</li>
+<li>And other necessary libraries</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configure API Keys" duration="5">
+        <p>Research Agent requires API keys for search and AI capabilities. You&#39;ll need to create a <code>.env</code> file in the project root.</p>
+<pre><code language="language-bash" class="language-bash">touch .env
+</code></pre>
+<p>Open the <code>.env</code> file in your favorite text editor and add the following:</p>
+<pre><code language="language-ini" class="language-ini"># API Keys
+SERPAPI_API_KEY=your_serpapi_key_here
+GEMINI_API_KEY=your_gemini_api_key_here
+</code></pre>
+<h2 is-upgraded>Getting API Keys</h2>
+<h3 is-upgraded>SerpAPI</h3>
+<ul>
+<li>Visit <a href="https://serpapi.com/" target="_blank">SerpAPI&#39;s website</a> and create an account</li>
+<li>Navigate to the API Keys section in your dashboard</li>
+<li>Copy your API key and paste it into the .env file</li>
+</ul>
+<h3 is-upgraded>Google Gemini API</h3>
+<ul>
+<li>Visit <a href="https://ai.google.dev/gemini-api/docs/api-key?" target="_blank">Google AI Studio</a></li>
+<li>Create an account if you don&#39;t already have one</li>
+<li>Generate an API key in the settings</li>
+<li>Copy your API key and paste it into the .env file</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Run Your First Research Query" duration="5">
+        <p>Now that everything is set up, let&#39;s run your first research query!</p>
+<pre><code language="language-bash" class="language-bash">cd backend 
+</code></pre>
+<pre><code language="language-bash" class="language-bash">uvicorn main:app --reload 
+</code></pre>
+<p>Then open another terminal</p>
+<pre><code language="language-bash" class="language-bash">cd frontend 
+</code></pre>
+<pre><code language="language-bash" class="language-bash">streamlit run app.py 
+</code></pre>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
