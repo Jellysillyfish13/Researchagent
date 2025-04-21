@@ -1,0 +1,9 @@
+fastapi
+langchain_core
+langgraph
+protobuf
+pydantic
+python-dotenv
+Requests
+streamlit
+uvicorn
